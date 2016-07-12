@@ -1,0 +1,57 @@
+<div class="heading">
+<div class="row">
+   <div class="col-md-4"><a href="https://docs.google.com/forms/d/1YvmyThg0af7O4ZLLGEpqNUrUUUtUpK3G739ITjEQNuI/viewform" target="_blank" class="btn btn-default">Submit new ones</a></div>
+   <div class="col-md-4">
+     <button *ngIf="!expanded"
+             class="btn btn-default" 
+             title="Expand All" 
+             (click)="expandAll()">Expand All
+     </button>
+     <button *ngIf="expanded"
+             class="btn btn-default" 
+             title="Collapse All" 
+             (click)="collapseAll()">Collapse All
+     </button>
+   </div>
+   <div class="col-md-4">
+     <button *ngIf="!editable"
+          class="btn btn-default" 
+          title="Arrange rebuttals from strongest to weakest and click this when you are done" 
+          (click)="toggleEditable()" >
+          Contribute Mode
+   </button>
+   <button *ngIf="editable && touched"
+          class="btn btn-default touched" 
+          title="Save changes" 
+          (click)="saveAll()">
+          Save Changes 
+   </button>
+   <button *ngIf="editable && !touched" 
+          class="btn btn-default" 
+          title="Read only mode" 
+          (click)="toggleEditable()">
+          Read-Only Mode 
+   </button>
+   </div>
+</div>
+</div><br><ul id="objection-list">
+<li *ngFor="let objection of objections">
+   <list-objection 
+   [objection]="objection" 
+   [editable]="editable"
+   (onEdit)="setTouched()" 
+   (onReordered)="setReordered(objection)"
+   ></list-objection>
+</li>
+</ul>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<!--
+  if(e.parameter.objection) {
+    var id = e.parameter.objection;
+    s +=     '<script type="text/javascript">'
+      +      'goTo(' + id + ');'
+      +      '</script>';
+    }
+    -->
+Unaffiliated with the Bernie Sanders for President campaign. Made by volunteers with optimism for a better future

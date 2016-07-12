@@ -1,0 +1,17 @@
+
+    .heading {
+        position: fixed;
+        font-size: 20px;
+        top: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 1
+    } 
+    
+    ul {
+        list-style: none;
+    }
+    
+    .touched {
+        background-color: Beige
+    }
