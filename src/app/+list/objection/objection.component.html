@@ -9,10 +9,9 @@
              </a>
              <br>{{objection.imageLabel}}
         </div><br>
-        <ul class="container" [dragula]='"sixth-bag"'>
-          <li *ngFor="let rebuttal of objection.rebuttals" [ngClass]="{touched: rebuttal.touched}">
+        <ul class="container" [sortablejs]="objection.rebuttals" [sortablejsOptions]="options" (update)="updateSortable($event)">
+          <li *ngFor="let rebuttal of objection.rebuttals" [ngClass]="{touched: rebuttal.touched}" id="rebuttal-{{rebuttal.id}}">
             <list-rebuttal 
-              [dragulaModel]='objection.rebuttals' 
               [rebuttal]="rebuttal" 
               [editable]="editable"
               (onCancel)="cancelRebuttal(rebuttal)" 

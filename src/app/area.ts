@@ -1,6 +1,6 @@
-import { Objection } from './objection';
+import { ObjectionModel } from './objection';
 
 export interface Area {
     "name": string; 
-    "objections": Objection[]
+    "objections": ObjectionModel[]
 }

@@ -1,19 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
-import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
-
-import { Rebuttal } from '../../rebuttal';
+import { RebuttalModel } from '../../rebuttal';
 
 @Component({
     moduleId: module.id,
     selector: 'list-rebuttal',
     templateUrl: 'rebuttal.component.html',
     styleUrls: ['rebuttal.component.css'],
-    directives: [Dragula],
-    viewProviders: [DragulaService]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RebuttalComponent implements OnInit {
-  @Input() rebuttal: Rebuttal;
+  @Input() rebuttal: RebuttalModel;
   @Input() editable = false;
   @Output() onCancel = new EventEmitter();
   @Output() onEdit = new EventEmitter();
@@ -26,11 +23,14 @@ export class RebuttalComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
+  touch() {
+    console.log('touching')
+  }
   toggleEditable() {
     this.rebuttal.editable = !this.rebuttal.editable;
   }
-  
+
   cancel() {
     if(this.rebuttal.id==0) {
       this.onCancel.emit(null);

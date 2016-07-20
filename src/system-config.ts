@@ -3,28 +3,17 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-    'ng2-toasty':                 'vendor/ng2-toasty',
-    'ng2-dnd':                    'vendor/ng2-dnd',
-    'dragula':                    'https://npmcdn.com/dragula',
-    'ng2-dragula':                'vendor/ng2-dragula',
-    'contra':                     'vendor/contra',
-    'atoa':                       'vendor/atoa',
-    'ticky':                      'vendor/ticky',
-    'crossvent':                  'vendor/crossvent/src',
-    'custom-event':               'vendor/custom-event'
+  'ng2-toasty': 'vendor/ng2-toasty',
+  'angular-sortablejs': 'vendor/angular-sortablejs',
+  'sortablejs': 'vendor/sortablejs/Sortable.js',
+  'immutable': 'vendor/immutable/dist/immutable.min.js',
+  'redux': 'vendor/redux/dist/redux.js'
 };
 
 /** User packages configuration. */
 const packages: any = {
-    'ng2-toasty':                 { defaultExtension: 'js' },
-    'ng2-dnd':                    { defaultExtension: 'js' },
-    'ng2-dragula':                { defaultExtension: 'js' },
-    'dragula': { main: 'dragula.js', defaultExtension: 'js' },
-    'contra': { main: 'contra.js', defaultExtension: 'js' },
-    'atoa': { main: 'atoa.js', defaultExtension: 'js' },
-    'ticky': { main: 'ticky.js', defaultExtension: 'js' },
-     'crossvent': { main: 'crossvent.js', defaultExtension: 'js' },
-     'custom-event': { main: 'index.js', defaultExtension: 'js' }
+  'ng2-toasty': { defaultExtension: 'js' },
+  'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +25,7 @@ const barrels: string[] = [
   '@angular/core',
   '@angular/common',
   '@angular/compiler',
+  '@angular/forms',
   '@angular/http',
   '@angular/router',
   '@angular/platform-browser',

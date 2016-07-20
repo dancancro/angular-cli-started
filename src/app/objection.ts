@@ -1,10 +1,11 @@
-import { Rebuttal } from './rebuttal';
+import { RebuttalModel } from './rebuttal';
 
-export interface Objection {
-    "id": number; 
-    "name": string; 
-    "rebuttals": Rebuttal[];
-    "imgHref": string;
-    "imgSrc": string;
-    "reordered": boolean;
+export interface ObjectionModel {
+    id: number; 
+    name: string; 
+    rebuttals?: RebuttalModel[];
+    imgHref?: string;
+    imgSrc?: string;
+    reordered?: boolean;
+    star?: boolean
 }
