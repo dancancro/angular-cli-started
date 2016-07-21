@@ -4,6 +4,6 @@ export class BernierebuttalsPage {
   }
 
   getParagraphText() {
-    return element(by.css('bernierebuttals-app h1')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 }
