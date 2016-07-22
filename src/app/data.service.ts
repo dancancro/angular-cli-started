@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -6,12 +6,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 import { ObjectionModel } from './objection';
-import { Area } from './area';
 
 let objectionsPromise;
 
 @Injectable()
-export class DataService {
+export class DataService implements OnInit {
     result: Object;
     combined: any;
     error: Object;
@@ -26,6 +25,9 @@ export class DataService {
     }
 
     constructor(private http: Http) {
+    }
+    
+    ngOnInit() {
         objectionsPromise = this.http.get(this.getUrl).toPromise();
     }
 

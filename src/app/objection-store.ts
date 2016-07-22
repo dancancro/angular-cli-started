@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Immutable = require('immutable');
 import { createStore } from 'redux';
@@ -7,23 +7,29 @@ import { reducer } from './reducer';
 import { ObjectionModel } from './objection';
 import { DataService } from './data.service';
 
+let storePromise;
+
 // import promiseMiddleware from 'redux-promise';
 @Injectable()
-export class ObjectionStore {
+export class ObjectionStore implements OnInit {
   private sub: any;
   store: any;
 
   constructor(
     private dataService: DataService) {
- 
-     // from https://github.com/thelgevold/angular-2-samples/blob/master/components/http/http.ts
+  }
+
+  ngOnInit() {
+
+    // from https://github.com/thelgevold/angular-2-samples/blob/master/components/http/http.ts
     this.dataService.getObjections()
-    .then((objections: any) => {
-      //  this.objections = objections.json();    
-             console.log(objections.json());
-           this.store = createStore(reducer, Immutable.List<ObjectionModel>(objections.json()));
-    });
-       
+      .then((objections: any) => {
+        //  this.objections = objections.json();    
+        console.log("ObjectionStore.onInit:");
+        console.log(objections.json());
+        this.store = createStore(reducer, Immutable.List<ObjectionModel>(objections.json()));
+      });
+
     // from http://plnkr.co/edit/z8VzCDYNrQR4KzpTVqI7?p=preview
     // this.sub = this.route
     //   .params
@@ -32,7 +38,6 @@ export class ObjectionStore {
     //       .then(objections => {
     //       })
     //   });  
-    
   }
 
   get objections(): Immutable.List<ObjectionModel> {
@@ -42,7 +47,7 @@ export class ObjectionStore {
   dispatch(action: ObjectionAction) {
     this.store.dispatch(action);
   }
-    
+
   addObjection(newObjection: string) {
     this.objections = this.objections.push({
       id: 0,

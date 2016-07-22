@@ -15,7 +15,7 @@ import { addObjection } from '../actions';
   selector: 'app-list',
   templateUrl: 'list.component.html',
   styleUrls: ['list.component.css'],
-  providers: [ObjectionStore, DataService],
+  providers: [ObjectionStore, DataService],                        // I don't know why it needs DataService here
   directives: [ObjectionComponent, SORTABLEJS_DIRECTIVES]
 })
 export class ListComponent implements OnInit {
@@ -31,19 +31,23 @@ export class ListComponent implements OnInit {
   objectionID: number;
 
   constructor(
-    private store: ObjectionStore,
+    private objectionStore: ObjectionStore,
     private route: ActivatedRoute) {
     // from https://github.com/thelgevold/angular-2-samples/blob/master/components/http/http.ts
-    // this.dataxxService.getObjections()
+    // this.dataService.getObjections()
     // .then((res: any) => {
     //     this.objections = res.json();    
     // });
+    // this.store.getStorePromise()
+    //   .then((store: any) => {
+    //     this.store = store;
+    //   })
 
     // from http://plnkr.co/edit/z8VzCDYNrQR4KzpTVqI7?p=preview
     // this.sub = this.route
     //   .params
     //   .subscribe(params => {
-    //     this.dataxxService.getObjections()
+    //     this.dataService.getObjections()
     //       .then(objections => {
     //         this.objections = objections.json();
     //       })
@@ -51,12 +55,16 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() { 
-    console.log("STORE:" + this.store)
+  //  this.objectionStore.initialize();
+    console.log("ListComponent.onInit:");
+    console.log(JSON.stringify("STORE:" + this.objectionStore));
+    console.log(JSON.stringify("OBJECTIONS:" + this.objectionStore.objections));
+    
   }
 
 
   addObjection(objection) {
-    this.store.dispatch(addObjection(objection, this.objectionID++));
+    this.objectionStore.dispatch(addObjection(objection, this.objectionID++));
   }
 
 
@@ -87,7 +95,7 @@ export class ListComponent implements OnInit {
   saveAll() {
 //    this.dataxxService.saveObjections(this.store.objections);
 
-    this.store.objections.forEach(objection => {
+    this.objectionStore.objections.forEach(objection => {
       objection.reordered = false;
       objection.rebuttals.forEach(rebuttal =>
         rebuttal.touched = false);
