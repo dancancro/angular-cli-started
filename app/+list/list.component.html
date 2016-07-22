@@ -35,7 +35,7 @@
    </div>
 </div>
 </div><br>
-<ul id="objection-list" [sortablejs]="store.objections" [sortablejsOptions]="options" (update)="setTouched()">
+<ul id="objection-list" [sortablejs]="objectionStore.objections" [sortablejsOptions]="options" (update)="setTouched()">
 <li *ngFor="let objection of store.objections">
    <list-objection 
    [objection]="objection" 
