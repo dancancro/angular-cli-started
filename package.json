@@ -24,6 +24,7 @@
     "angular-sortablejs": "0.1.0",
     "es6-shim": "0.35.1",
     "immutable": "3.8.1",
+    "ng2-redux": "3.3.2",
     "ng2-toasty": "1.7.3",
     "redux": "3.5.2",
     "reflect-metadata": "0.1.3",

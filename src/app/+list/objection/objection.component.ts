@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { SortablejsOptions, SORTABLEJS_DIRECTIVES } from 'angular-sortablejs';
 
 import { ObjectionModel } from '../../objection';
-import { ObjectionStore } from '../../objection-store';
+// import { ObjectionStore } from '../../objection-store';
 import { RebuttalModel } from '../../rebuttal';
 import { RebuttalComponent } from '../rebuttal/rebuttal.component';
 import { addRebuttal } from '../../actions';
@@ -15,7 +15,6 @@ import { addRebuttal } from '../../actions';
     styleUrls: ['objection.component.css'],
     properties: ['objection'],
     directives: [RebuttalComponent, SORTABLEJS_DIRECTIVES],
-    providers: [ObjectionStore],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObjectionComponent implements OnInit {
@@ -40,7 +39,7 @@ export class ObjectionComponent implements OnInit {
     };
     rebuttalID: number;
 
-    constructor(private store: ObjectionStore) {
+    constructor() {
     }
 
     updateSortable(evt) {
@@ -81,7 +80,7 @@ export class ObjectionComponent implements OnInit {
     */
 
     addRebuttal(rebuttal) {
-        this.store.dispatch(addRebuttal(rebuttal, this.rebuttalID++));
+     //   this.store.dispatch(addRebuttal(rebuttal, this.rebuttalID++));
         // this.objection.rebuttals.push(
         //     {
         //         id: 0,

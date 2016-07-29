@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import Immutable = require('immutable');
 import { createStore } from 'redux';
 import { ObjectionAction } from './actions';
-import { reducer } from './reducer';
+import { Observable } from 'rxjs/Observable';
+//import { reducer } from './reducers';
 import { ObjectionModel } from './objection';
 import { DataService } from './data.service';
 
@@ -32,7 +33,11 @@ export class ObjectionStore implements OnInit {
     //   });
 
     // from http://plnkr.co/edit/z8VzCDYNrQR4KzpTVqI7?p=preview
-    this.sub = this.route
+
+  }
+
+  getObjectionsStore(): Observable<ObjectionStore> {
+     return this.route
       .params
       .subscribe(params => {
         this.dataService.getObjections()
@@ -45,9 +50,10 @@ export class ObjectionStore implements OnInit {
       });  
   }
 
-  get objections(): Immutable.List<ObjectionModel> {
-    return this.store.getState();
-  }
+  
+  // get objections(): Immutable.List<ObjectionModel> {
+  //   return this.store.getState();
+  // }
 
   dispatch(action: ObjectionAction) {
     this.store.dispatch(action);

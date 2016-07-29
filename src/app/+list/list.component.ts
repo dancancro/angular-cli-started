@@ -3,25 +3,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SortablejsOptions, SORTABLEJS_DIRECTIVES } from 'angular-sortablejs';
 import Immutable = require('immutable');
+import { NgRedux, select } from 'ng2-redux';
+import { Observable } from 'rxjs/Observable';
 
 import { ObjectionComponent } from './objection/objection.component';
 import { ObjectionModel } from '../objection';
-import { ObjectionStore } from '../objection-store';
+// import { ObjectionStore } from '../objection-store';
 import { DataService } from '../data.service';
 import { addObjection } from '../actions';
+import FETCH_OBJECTIONS_OK from '../objection.reducer'
+import FETCH_OBJECTIONS_ERROR from '../error.reducer'
 
-@Component({
+  // Magic selector from ng2-redux that makes an observable out
+  // of the 'objections' property of your store.
+  @Component({
   moduleId: module.id,
   selector: 'app-list',
   templateUrl: 'list.component.html',
   styleUrls: ['list.component.css'],
-  providers: [ObjectionStore, DataService],                        // I don't know why it needs DataService here
+  providers: [DataService],                        // I don't know why it needs DataService here
   directives: [ObjectionComponent, SORTABLEJS_DIRECTIVES]
 })
 export class ListComponent implements OnInit {
+  @select('objections') objections: Observable<ObjectionModel[]>;
 
 //  objections = Immutable.List<ObjectionModel>();
-  private sub: any;
+  private subscription: any;
   editable: boolean = false;
   touched: boolean = false;
   expanded: boolean = false;
@@ -31,8 +38,10 @@ export class ListComponent implements OnInit {
   objectionID: number;
 
   constructor(
-    private objectionStore: ObjectionStore,
-    private route: ActivatedRoute) {
+      private ngRedux: NgRedux<any>,
+      private dataService: DataService){
+    // private _objectionStoreObservable: ObjectionStore,
+    // private route: ActivatedRoute) {
     // from https://github.com/thelgevold/angular-2-samples/blob/master/components/http/http.ts
     // this.dataService.getObjections()
     // .then((res: any) => {
@@ -52,19 +61,32 @@ export class ListComponent implements OnInit {
     //         this.objections = objections.json();
     //       })
     //   });
+  //      this._objectionStoreObservable.subscribe
+
   }
 
-  ngOnInit() { 
-  //  this.objectionStore.initialize();
-    console.log("ListComponent.onInit:");
-    console.log(JSON.stringify("STORE:" + this.objectionStore));
-    console.log(JSON.stringify("OBJECTIONS:" + this.objectionStore.objections));
-    
+  ngOnInit() {
+      this.subscription = this.dataService.getObjections()
+         .subscribe(objections => this.ngRedux.dispatch({
+             type: FETCH_OBJECTIONS_OK,
+             payload: objections
+         }),
+         error => this.ngRedux.dispatch({
+             type: FETCH_OBJECTIONS_ERROR,
+             error: error
+         }));
   }
+  // }  ngOnInit() { 
+  //  this.objectionStore.initialize();
+ //   console.log("ListComponent.onInit:");
+  //  console.log(JSON.stringify("STORE:" + this.objectionStore));
+ //   console.log(JSON.stringify("OBJECTIONS:" + this.objectionStore.objections));
+    
+  // }
 
 
   addObjection(objection) {
-    this.objectionStore.dispatch(addObjection(objection, this.objectionID++));
+  //  this.objectionStore.dispatch(addObjection(objection, this.objectionID++));
   }
 
 
@@ -95,11 +117,11 @@ export class ListComponent implements OnInit {
   saveAll() {
 //    this.dataxxService.saveObjections(this.store.objections);
 
-    this.objectionStore.objections.forEach(objection => {
-      objection.reordered = false;
-      objection.rebuttals.forEach(rebuttal =>
-        rebuttal.touched = false);
-    });
+    // this.objectionStore.objections.forEach(objection => {
+    //   objection.reordered = false;
+    //   objection.rebuttals.forEach(rebuttal =>
+    //     rebuttal.touched = false);
+    // });
     this.touched = false;
   }
 
