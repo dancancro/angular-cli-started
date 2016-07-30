@@ -3,7 +3,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { SortablejsOptions, SORTABLEJS_DIRECTIVES } from 'angular-sortablejs';
 
 import { ObjectionModel } from '../../objection';
-// import { ObjectionStore } from '../../objection-store';
 import { RebuttalModel } from '../../rebuttal';
 import { RebuttalComponent } from '../rebuttal/rebuttal.component';
 import { addRebuttal } from '../../actions';

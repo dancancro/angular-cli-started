@@ -8,10 +8,10 @@ import 'rxjs/add/operator/toPromise';
 
 import { ObjectionModel } from './objection';
 
-let objectionsPromise;
+//let objectionsPromise;
 
 @Injectable()
-export class DataService implements OnInit {
+export class DataService {
     result: Object;
     combined: any;
     error: Object;
@@ -19,21 +19,21 @@ export class DataService implements OnInit {
     //getUrl: string = './objections.json';
     postUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec';
 
-    static getObjection(objections: any[], id: number): ObjectionModel {
-        return objections.filter(function(objection) {
-            return objection.id === id
-        })[0];
-    }
+    // static getObjection(objections: any[], id: number): ObjectionModel {
+    //     return objections.filter(function(objection) {
+    //         return objection.id === id
+    //     })[0];
+    // }
 
     constructor(private http: Http) {
     }
-    
-    ngOnInit() {
-        objectionsPromise = this.http.get(this.getUrl).toPromise();
-    }
 
-    getObjections() {
-        return objectionsPromise;
+    getObjections(): Observable<ObjectionModel[]> {
+        return this.http.get(this.getUrl) // returns an observable of the response
+            .map(response => {
+                  console.log(response.json());
+                  return response.json()
+                }); // transforms it into an observable of ObjectionModels
     }
 
     saveObjections(objections) {

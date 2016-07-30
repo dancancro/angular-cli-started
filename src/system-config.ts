@@ -14,7 +14,7 @@ const map: any = {
   'sortablejs': 'vendor/sortablejs/Sortable.js',
   'immutable': 'vendor/immutable/dist/immutable.min.js',
   'redux': 'vendor/redux/dist/redux.js',
-  'ng2-redux': 'vendor/ng2-redux'
+  'ng2-redux': 'vendor/ng2-redux/lib'
 };
 
 /** User packages configuration. */

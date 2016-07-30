@@ -4,26 +4,23 @@ import { ObjectionAction } from './actions';
 
 export const FETCH_OBJECTIONS_OK = "FETCH_OBJECTIONS_OK";
 export const ADD_OBJECTION = "ADD_OBJECTION";
+export const STAR_OBJECTION = "STAR";
 
 export default function objectionReducer(
-     state: Immutable.List<ObjectionModel> = Immutable.List<ObjectionModel>(), 
-     action: ObjectionAction) {
+     state = [], action) {
   switch (action.type) {
     case FETCH_OBJECTIONS_OK:
-      return state.push({
-        id: action.id,
-        name: action.name,
-        star: false
-      });
+      //return state;
+      return  [ ...action.payload ];
     case ADD_OBJECTION:
       return state.push({
         id: action.id,
         name: action.name,
         star: false
       });
-    case 'REMOVE':
-      return state.delete(findIndexById(state, action));
-    case 'STAR':
+    // case REMOVE_OBJECTION:    // I don't think we want this feature
+    //   return state.delete(findIndexById(state, action));
+    case STAR_OBJECTION:
       return (<any>state).update(findIndexById(state, action), (objection) => {
         return {
           id: objection.id,

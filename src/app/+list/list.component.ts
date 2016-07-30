@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { ObjectionComponent } from './objection/objection.component';
 import { ObjectionModel } from '../objection';
-// import { ObjectionStore } from '../objection-store';
 import { DataService } from '../data.service';
 import { addObjection } from '../actions';
 import FETCH_OBJECTIONS_OK from '../objection.reducer'
@@ -40,29 +39,6 @@ export class ListComponent implements OnInit {
   constructor(
       private ngRedux: NgRedux<any>,
       private dataService: DataService){
-    // private _objectionStoreObservable: ObjectionStore,
-    // private route: ActivatedRoute) {
-    // from https://github.com/thelgevold/angular-2-samples/blob/master/components/http/http.ts
-    // this.dataService.getObjections()
-    // .then((res: any) => {
-    //     this.objections = res.json();    
-    // });
-    // this.store.getStorePromise()
-    //   .then((store: any) => {
-    //     this.store = store;
-    //   })
-
-    // from http://plnkr.co/edit/z8VzCDYNrQR4KzpTVqI7?p=preview
-    // this.sub = this.route
-    //   .params
-    //   .subscribe(params => {
-    //     this.dataService.getObjections()
-    //       .then(objections => {
-    //         this.objections = objections.json();
-    //       })
-    //   });
-  //      this._objectionStoreObservable.subscribe
-
   }
 
   ngOnInit() {
@@ -76,14 +52,6 @@ export class ListComponent implements OnInit {
              error: error
          }));
   }
-  // }  ngOnInit() { 
-  //  this.objectionStore.initialize();
- //   console.log("ListComponent.onInit:");
-  //  console.log(JSON.stringify("STORE:" + this.objectionStore));
- //   console.log(JSON.stringify("OBJECTIONS:" + this.objectionStore.objections));
-    
-  // }
-
 
   addObjection(objection) {
   //  this.objectionStore.dispatch(addObjection(objection, this.objectionID++));
