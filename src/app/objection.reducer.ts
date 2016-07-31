@@ -8,6 +8,10 @@ export const STAR_OBJECTION = "STAR";
 
 export default function objectionReducer(
      state = [], action) {
+
+console.log("action.type:" + action.type);
+
+
   switch (action.type) {
     case FETCH_OBJECTIONS_OK:
       //return state;
