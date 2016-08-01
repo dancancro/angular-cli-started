@@ -14,11 +14,11 @@
             <list-rebuttal 
               [rebuttal]="rebuttal" 
               [editable]="editable"
-              (onCancel)="cancelRebuttal(rebuttal)" 
+              (onCancel)="actions.cancelRebuttal(rebuttal)" 
               (onEdit)="emitEdit()" 
             ></list-rebuttal>
           </li>
-          <li><button class="btn btn-default btn-xs" title="Add" (click)="addRebuttal()" *ngIf="editable">Add</button> </li>
+          <li><button class="btn btn-default btn-xs" title="Add" (click)="actions.addRebuttal()" *ngIf="editable">Add</button> </li>
         </ul>
       </span>
 </div>

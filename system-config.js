@@ -12,13 +12,15 @@ var map = {
     'sortablejs': 'vendor/sortablejs/Sortable.js',
     'immutable': 'vendor/immutable/dist/immutable.min.js',
     'redux': 'vendor/redux/dist/redux.js',
-    'ng2-redux': 'vendor/ng2-redux/lib'
+    'ng2-redux': 'vendor/ng2-redux/lib',
+    'redux-localstorage': 'vendor/redux-localstorage/lib'
 };
 /** User packages configuration. */
 var packages = {
     'ng2-toasty': { defaultExtension: 'js' },
     'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' },
-    'ng2-redux': { main: 'index.js', defaultExtension: 'js' }
+    'ng2-redux': { main: 'index.js', defaultExtension: 'js' },
+    'redux-localstorage': { defaultExtension: 'js' }
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -55,4 +57,4 @@ System.config({
 });
 // Apply the user's configuration.
 System.config({ map: map, packages: packages });
-//# sourceMappingURL=tmp/broccoli_type_script_compiler-input_base_path-fIvjYBsq.tmp/0/src/system-config.js.map
+//# sourceMappingURL=tmp/broccoli_type_script_compiler-input_base_path-vxQoDCaM.tmp/0/src/system-config.js.map
