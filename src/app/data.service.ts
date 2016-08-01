@@ -15,8 +15,8 @@ export class DataService {
     result: Object;
     combined: any;
     error: Object;
-    //getUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec?json=1';
-    getUrl: string = './objections.json';
+    getUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec?json=1';
+    //getUrl: string = './objections.json';
     postUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec';
 
     // static getObjection(objections: any[], id: number): ObjectionModel {

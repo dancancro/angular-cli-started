@@ -35,8 +35,8 @@
    </div>
 </div>
 </div><br> 
-<ul id="objection-list" [sortablejs]="objections$ | async" [sortablejsOptions]="options" (update)="setTouched()">
-<li *ngFor="let objection of objections$ | async">
+<ul id="objection-list" [sortablejs]="objections | async" [sortablejsOptions]="options" (update)="setTouched()">
+<li *ngFor="let objection of objections | async">
    <list-objection 
    [objection]="objection" 
    [editable]="editable"

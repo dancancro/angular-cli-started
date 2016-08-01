@@ -6,7 +6,7 @@ export default (state = [], action: any) => {
 
   switch (action.type) {
     case ListActions.FETCH_OBJECTIONS_OK:
-      console.log("listreducer.payload" + action.payload);
+ //     console.log("listreducer.payload" + action.payload);
       return [ ...action.payload ];
     case ListActions.ADD_OBJECTION:
       //do something here

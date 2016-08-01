@@ -4,7 +4,7 @@ import  listReducer  from './+list/list.reducer';
 import  errorReducer  from './error.reducer';
 
 export const rootReducer = combineReducers({
-    objections: objectionReducer,
+    objection: objectionReducer,
     list: listReducer,
     error: errorReducer
 });

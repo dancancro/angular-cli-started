@@ -24,7 +24,7 @@ import { ListActions } from './list.actions';
   directives: [ObjectionComponent, SORTABLEJS_DIRECTIVES]
 })
 export class ListComponent implements OnInit {
-  @select('objections') objections$: Observable<ObjectionModel[]>;
+  @select('list') objections: Observable<ObjectionModel[]>;
 
   private subscription: any;
   editable: boolean = false;
