@@ -22,7 +22,8 @@ module.exports = function(defaults) {
       'angular-sortablejs/src/sortable.directive.js.map',  
       'immutable/dist/immutable.min.js',
       'redux/dist/redux.js',
-      'ng2-redux/lib/**/*.js'
+      'ng2-redux/lib/**/*.js',
+      'redux-localstorage/lib/**/*.js'
     ]
   });
 };

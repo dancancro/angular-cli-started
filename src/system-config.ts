@@ -14,14 +14,16 @@ const map: any = {
   'sortablejs': 'vendor/sortablejs/Sortable.js',
   'immutable': 'vendor/immutable/dist/immutable.min.js',
   'redux': 'vendor/redux/dist/redux.js',
-  'ng2-redux': 'vendor/ng2-redux/lib'
+  'ng2-redux': 'vendor/ng2-redux/lib',
+  'redux-localstorage': 'vendor/redux-localstorage/lib'
 };
 
 /** User packages configuration. */
 const packages: any = {
   'ng2-toasty': { defaultExtension: 'js' },
   'angular-sortablejs': { main: 'index.js', defaultExtension: 'js' },
-  'ng2-redux': { main: 'index.js', defaultExtension: 'js' }
+  'ng2-redux': { main: 'index.js', defaultExtension: 'js' },
+  'redux-localstorage': { defaultExtension: 'js'}
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

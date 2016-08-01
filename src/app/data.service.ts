@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { ObjectionModel } from './objection';
+import { ObjectionModel } from './objection.model';
 
 //let objectionsPromise;
 
@@ -15,8 +15,8 @@ export class DataService {
     result: Object;
     combined: any;
     error: Object;
-    getUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec?json=1';
-    //getUrl: string = './objections.json';
+    //getUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec?json=1';
+    getUrl: string = './objections.json';
     postUrl: string = 'https://script.google.com/macros/s/AKfycbymzGKzgGkVo4kepy9zKIyDlxbnLbp-ivCvj8mVMClmWgr-V-g/exec';
 
     // static getObjection(objections: any[], id: number): ObjectionModel {
@@ -31,7 +31,6 @@ export class DataService {
     getObjections(): Observable<ObjectionModel[]> {
         return this.http.get(this.getUrl) // returns an observable of the response
             .map(response => {
-                  console.log(response.json());
                   return response.json()
                 }); // transforms it into an observable of ObjectionModels
     }

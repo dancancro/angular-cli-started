@@ -1,32 +1,31 @@
 import { Component, OnInit, ContentChildren, QueryList } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 import { SortablejsOptions, SORTABLEJS_DIRECTIVES } from 'angular-sortablejs';
-import Immutable = require('immutable');
 import { NgRedux, select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
+import { RootState } from '../store';
 
 import { ObjectionComponent } from './objection/objection.component';
-import { ObjectionModel } from '../objection';
+import { ObjectionModel } from '../objection.model';
 import { DataService } from '../data.service';
-import { addObjection } from '../actions';
-import FETCH_OBJECTIONS_OK from '../objection.reducer'
-import FETCH_OBJECTIONS_ERROR from '../error.reducer'
+import { ListActions } from './list.actions';
 
-  // Magic selector from ng2-redux that makes an observable out
-  // of the 'objections' property of your store.
-  @Component({
+// Magic selector from ng2-redux that makes an observable out
+// of the 'objections' property of your store.
+@Component({
   moduleId: module.id,
   selector: 'app-list',
   templateUrl: 'list.component.html',
   styleUrls: ['list.component.css'],
-  providers: [DataService],                        // I don't know why it needs DataService here
+  pipes: [AsyncPipe],                                           // I don't think this line is necessary
+  providers: [DataService, ListActions],
   directives: [ObjectionComponent, SORTABLEJS_DIRECTIVES]
 })
 export class ListComponent implements OnInit {
-  @select('objections') objections: Observable<ObjectionModel[]>;
+  @select('objections') objections$: Observable<ObjectionModel[]>;
 
-//  objections = Immutable.List<ObjectionModel>();
   private subscription: any;
   editable: boolean = false;
   touched: boolean = false;
@@ -37,24 +36,20 @@ export class ListComponent implements OnInit {
   objectionID: number;
 
   constructor(
-      private ngRedux: NgRedux<any>,
-      private dataService: DataService){
+    private ngRedux: NgRedux<any>,      // should this be NgRedux<RootState> ?
+    private listActions: ListActions,
+    private dataService: DataService) {
   }
 
   ngOnInit() {
-      this.subscription = this.dataService.getObjections()
-         .subscribe(objections => this.ngRedux.dispatch({
-             type: FETCH_OBJECTIONS_OK,
-             payload: objections
-         }),
-         error => this.ngRedux.dispatch({
-             type: FETCH_OBJECTIONS_ERROR,
-             error: error
-         }));
+    this.subscription = this.dataService.getObjections().subscribe({
+        next: (objections) => this.listActions.fetchObjections(objections),
+        error: (err) => this.listActions.error(err)
+      });
   }
 
-  addObjection(objection) {
-  //  this.objectionStore.dispatch(addObjection(objection, this.objectionID++));
+  addObjection() {
+      this.listActions.addObjection("Bernie doesn't have a uterus", 12345);
   }
 
 
@@ -83,7 +78,7 @@ export class ListComponent implements OnInit {
   }
 
   saveAll() {
-//    this.dataxxService.saveObjections(this.store.objections);
+    //    this.dataxxService.saveObjections(this.store.objections);
 
     // this.objectionStore.objections.forEach(objection => {
     //   objection.reordered = false;

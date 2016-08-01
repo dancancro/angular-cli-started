@@ -1,4 +1,4 @@
-import { RebuttalModel } from './rebuttal';
+import { RebuttalModel } from './rebuttal.model';
 
 export interface ObjectionModel {
     id: number; 

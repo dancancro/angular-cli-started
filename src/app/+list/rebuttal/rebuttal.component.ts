@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
-import { RebuttalModel } from '../../rebuttal';
+import { RebuttalModel } from '../../rebuttal.model';
 
 @Component({
     moduleId: module.id,

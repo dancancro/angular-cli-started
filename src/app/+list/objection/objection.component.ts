@@ -2,10 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 
 import { SortablejsOptions, SORTABLEJS_DIRECTIVES } from 'angular-sortablejs';
 
-import { ObjectionModel } from '../../objection';
-import { RebuttalModel } from '../../rebuttal';
+import { ObjectionModel } from '../../objection.model';
+import { RebuttalModel } from '../../rebuttal.model';
 import { RebuttalComponent } from '../rebuttal/rebuttal.component';
-import { addRebuttal } from '../../actions';
+import { ObjectionActions } from './objection.actions';
 
 @Component({
     moduleId: module.id,
@@ -13,6 +13,7 @@ import { addRebuttal } from '../../actions';
     templateUrl: 'objection.component.html',
     styleUrls: ['objection.component.css'],
     properties: ['objection'],
+    providers: [ObjectionActions],
     directives: [RebuttalComponent, SORTABLEJS_DIRECTIVES],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -38,7 +39,7 @@ export class ObjectionComponent implements OnInit {
     };
     rebuttalID: number;
 
-    constructor() {
+    constructor(private actions: ObjectionActions) {
     }
 
     updateSortable(evt) {
