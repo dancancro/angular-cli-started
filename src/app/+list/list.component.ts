@@ -1,4 +1,4 @@
-import { Component, OnInit, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ContentChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
@@ -18,26 +18,25 @@ import { ListActions } from './list.actions';
   moduleId: module.id,
   selector: 'app-list',
   templateUrl: 'list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['list.component.css'],
-  pipes: [AsyncPipe],                                           // I don't think this line is necessary
+  pipes: [AsyncPipe],
   providers: [DataService, ListActions],
   directives: [ObjectionComponent, SORTABLEJS_DIRECTIVES]
 })
 export class ListComponent implements OnInit {
-  @select('list') objections: Observable<ObjectionModel[]>;
+  @select('data') objections: Observable<ObjectionModel[]>;
 
   private subscription: any;
   editable: boolean = false;
   touched: boolean = false;
-  expanded: boolean = false;
   options: SortablejsOptions = {
     disabled: false
   };
-  objectionID: number;
 
   constructor(
     private ngRedux: NgRedux<any>,      // should this be NgRedux<RootState> ?
-    private listActions: ListActions,
+    public listActions: ListActions,
     private dataService: DataService) {
   }
 
@@ -48,33 +47,11 @@ export class ListComponent implements OnInit {
       });
   }
 
-  addObjection() {
-      this.listActions.addObjection("Bernie doesn't have a uterus", 12345);
-  }
-
-
-  setTouched() {
-    this.touched = true;
-  }
-
   goTo(id) {
     //  var y = document.getElementById(id).getBoundingClientRect().top - $('div .row')[0].getBoundingClientRect().bottom - 10;
     //  window.scrollBy(0,y);
     //  var span = $($('#' + id).parent('div')[0]).find('span')[0];
     //  toggleRebuttals(span);
-  }
-
-  toggleEditable() {
-    this.editable = !this.editable;
-    this.options.disabled = !this.options.disabled;
-  }
-
-  expandAll() {
-    this.expanded = true;
-  }
-
-  collapseAll() {
-    this.expanded = false;
   }
 
   saveAll() {

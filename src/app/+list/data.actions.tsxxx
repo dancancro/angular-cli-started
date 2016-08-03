@@ -1,0 +1,45 @@
+// Actions
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { RootState } from '../store';
+
+@Injectable()
+export class DataActions {
+  constructor(
+    private ngRedux: NgRedux<RootState>) { }
+
+  static ADD_REBUTTAL: string = "ADD_REBUTTAL";
+  static STAR_OBJECTION: string = "STAR";
+  static FETCH_OBJECTIONS_OK: string = "FETCH_OBJECTIONS_OK";
+  static FETCH_OBJECTIONS_ERROR: string = "FETCH_OBJECTIONS_ERROR";
+  static ADD_OBJECTION: string = "ADD_OBJECTION";
+
+  starObjection(id: number): void {
+    this.ngRedux.dispatch({ type: DataActions.STAR_OBJECTION });
+  }
+
+  addRebuttal(name?: string, id?: number): void {
+    this.ngRedux.dispatch({ type: DataActions.ADD_REBUTTAL });
+  }
+
+  fetchObjections(objections): void {
+    this.ngRedux.dispatch({ 
+      type: DataActions.FETCH_OBJECTIONS_OK, 
+      payload: objections 
+    });
+  }
+
+  addObjection(name: string, id: number): void {
+    this.ngRedux.dispatch({ 
+      type: DataActions.ADD_OBJECTION,
+      payload: {name: name, id: id}
+    });
+  }
+
+  error(err): void {
+    this.ngRedux.dispatch({
+      type: DataActions.FETCH_OBJECTIONS_ERROR,
+      error: err
+    });
+  }
+}

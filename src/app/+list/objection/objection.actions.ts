@@ -2,21 +2,19 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { RootState } from '../../store';
+import { OBJECTION_STARRED, REBUTTAL_ADDED } from '../../constants';
 
 @Injectable()
 export class ObjectionActions {
   constructor(
     private ngRedux: NgRedux<RootState>) { }
 
-  static ADD_REBUTTAL: string = "ADD_REBUTTAL";
-  static STAR_OBJECTION: string = "STAR";
-
   starObjection(id: number): void {
-    this.ngRedux.dispatch({ type: ObjectionActions.STAR_OBJECTION });
+    this.ngRedux.dispatch({ type: OBJECTION_STARRED });
   }
 
   addRebuttal(name?: string, id?: number): void {
-    this.ngRedux.dispatch({ type: ObjectionActions.ADD_REBUTTAL });
+    this.ngRedux.dispatch({ type: REBUTTAL_ADDED });
   }
 
 }

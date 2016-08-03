@@ -14,7 +14,7 @@ import { rootReducer } from './reducers';
   providers: [HTTP_PROVIDERS, NgRedux]
 })
 export class AppComponent {
-  title = 'app works!';
+  title = "app works!";
 
   constructor(private ngRedux: NgRedux<any>) {
     this.ngRedux.configureStore(rootReducer, {});

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import  objectionReducer  from './+list/objection/objection.reducer';
-import  listReducer  from './+list/list.reducer';
+import  dataReducer  from './data.reducer';
+import  uiStateReducer  from './ui-state.reducer';
 import  errorReducer  from './error.reducer';
 
 export const rootReducer = combineReducers({
-    objection: objectionReducer,
-    list: listReducer,
+    data: dataReducer,
+    uiState: uiStateReducer,
     error: errorReducer
 });

@@ -39,7 +39,7 @@ export class ObjectionComponent implements OnInit {
     };
     rebuttalID: number;
 
-    constructor(private actions: ObjectionActions) {
+    constructor(private objectionActions: ObjectionActions) {
     }
 
     updateSortable(evt) {

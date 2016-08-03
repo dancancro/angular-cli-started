@@ -1,0 +1,24 @@
+// Actions
+import { Injectable } from '@angular/core';
+import { NgRedux } from 'ng2-redux';
+import { RootState } from '../store';
+
+@Injectable()
+export class UIStateActions {
+  constructor(
+    private ngRedux: NgRedux<RootState>) { }
+
+  static EXPAND_OBJECTION: string = "EXPAND_OBJECTION";
+  static EXPAND_OBJECTION_ERROR: string = "EXPAND_OBJECTION_ERROR";
+
+  expandObjection(id: number): void {
+    this.ngRedux.dispatch({ type: UIStateActions.EXPAND_OBJECTION });
+  }
+
+  error(err): void {
+    this.ngRedux.dispatch({
+      type: UIStateActions.EXPAND_OBJECTION_ERROR,
+      error: err
+    });
+  }
+}

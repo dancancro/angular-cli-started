@@ -5,42 +5,48 @@
      <button *ngIf="!expanded"
              class="btn btn-default" 
              title="Expand All" 
-             (click)="expandAll()">Expand All
+             (click)="listActions.expandAll()">Expand All
      </button>
      <button *ngIf="expanded"
              class="btn btn-default" 
              title="Collapse All" 
-             (click)="collapseAll()">Collapse All
+             (click)="listActions.collapseAll()">Collapse All
      </button>
    </div>
    <div class="col-md-4">
      <button *ngIf="!editable"
           class="btn btn-default" 
           title="Arrange rebuttals from strongest to weakest and click this when you are done" 
-          (click)="toggleEditable()" >
+          (click)="listActions.toggleEditable()" >
           Contribute Mode
    </button>
    <button *ngIf="editable && touched"
           class="btn btn-default touched" 
           title="Save changes" 
-          (click)="saveAll()">
+          (click)="listActions.saveAll()">
           Save Changes 
    </button>
    <button *ngIf="editable && !touched" 
           class="btn btn-default" 
           title="Read only mode" 
-          (click)="toggleEditable()">
+          (click)="listActions.toggleEditable()">
           Read-Only Mode 
    </button>
    </div>
 </div>
 </div><br> 
-<ul id="objection-list" [sortablejs]="objections | async" [sortablejsOptions]="options" (update)="setTouched()">
+   <button *ngIf="editable" 
+          class="btn btn-default" 
+          title="Add a new objection" 
+          (click)="listActions.addObjection()">
+          Add Objection
+   </button><br>
+<ul id="objection-list" [sortablejs]="objections | async" [sortablejsOptions]="options" (update)="listActions.touch()">
 <li *ngFor="let objection of objections | async">
    <list-objection 
    [objection]="objection" 
    [editable]="editable"
-   (onEdit)="setTouched()" 
+   (onEdit)="listActions.touch()" 
    (onReordered)="setReordered(objection)"
    ></list-objection>
 </li>
