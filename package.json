@@ -1,6 +1,9 @@
 {
   "name": "bernierebuttals",
   "version": "0.0.0",
+  "engines": {
+    "node": "4.4.0"
+  },
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
